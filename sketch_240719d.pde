@@ -1,3 +1,5 @@
+PImage bgImage; // Declare a variable to hold the background image
+PImage faceImage;
 PImage[] images1; // Array to hold the first set of images
 PImage[] images2; // Array to hold the second set of images
 int currentIndex1 = 0; // Index of the current image in the first set
@@ -8,10 +10,13 @@ int keyPressCount = 0; // Counter to track the number of key presses
 
 void setup() {
   size(800, 850); // Double the width to fit two houses
+  bgImage = loadImage("background.jpg");
+  faceImage = loadImage("Face.png");
   
-  // Load the first set of images
+  
+  // Load the eyeleft
   images1 = new PImage[3]; // Assuming you have 3 images in the first set
-  images1[0] = loadImage("background1.jpg");
+  images1[0] = loadImage("eyeleft1.png");
   images1[1] = loadImage("background2.jpg");
   images1[2] = loadImage("background3.jpg");
 
@@ -19,17 +24,19 @@ void setup() {
   images2 = new PImage[3]; // Assuming you have 3 images in the second set
   images2[0] = loadImage("background4.jpg");
   images2[1] = loadImage("background5.jpg");
-  images2[2] = loadImage("background6.jpg");
+  images2[2] = loadImage("background6.png");
 }
 
 void draw() {
   background(255); // Optional, you can remove this if you only want the background image
+  image(bgImage, 0, 0, width, height);
+  image(faceImage,width/2 - 180 ,height/2 -150,300,600);
   
   // Flip through the first set of images if not stopped
   if (!stopFlipping1) {
     currentIndex1 = (currentIndex1 + 1) % images1.length; // Cycle through the first set of images
   }
-  image(images1[currentIndex1], 0, 0, 100, 100); // Display the current image from the first set on the left half
+  image(images1[currentIndex1], 200, 400, 100, 100); // Display the current image from the first set on the left half
 
   // Flip through the second set of images if not stopped
   if (!stopFlipping2) {
