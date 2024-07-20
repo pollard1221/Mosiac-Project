@@ -53,14 +53,14 @@ void setup() {
   // Load the NOSE
   images5 = new PImage[3]; // Assuming you have 3 images in the first set
   images5[0] = loadImage("nose1.png");
-  images5[1] = loadImage("mouth2.png");
-  images5[2] = loadImage("mouth3.png");
+  images5[1] = loadImage("nose2.png");
+  images5[2] = loadImage("nose3.png");
   
   // Load the EAR
   images6 = new PImage[3]; // Assuming you have 3 images in the first set
-  images6[0] = loadImage("nose1.png");
+  images6[0] = loadImage("rightear1.png");
   images6[1] = loadImage("rightear2.png");
-  images6[2] = loadImage("mouth3.png");
+  images6[2] = loadImage("rightear3.png");
  
 }
 
@@ -80,10 +80,10 @@ void draw() {
     image(images2[currentIndex2], 200, 60, 450, 450); // HAIR
     break;
   case 1:
-    image(images2[currentIndex2], 180, 200, 500, 500); // Curls
+    image(images2[currentIndex2], 160, 150, 500, 500); // Curls
     break;
   case 2:
-    image(images2[currentIndex2], 150, 250, 600, 400); // Long hair
+    image(images2[currentIndex2], 140, 160, 600, 400); // Long hair
     break; 
   }
 
@@ -105,7 +105,7 @@ void draw() {
   if (!stopFlipping4) {
     currentIndex4 = (currentIndex4 + 1) % images1.length; // Cycle through the first set of images
   }
-  image(images4[currentIndex5], 330, 580, 160, 170); // MOUTH
+  image(images4[currentIndex4], 330, 580, 160, 170); // MOUTH
   
   // Flip through the first set of images if not stopped
   if (!stopFlipping5) {
@@ -114,10 +114,10 @@ void draw() {
   image(images5[currentIndex5], 360, 480, 100, 120); // NOSE
   
   // Flip through the first set of images if not stopped
-  if (!stopFlipping5) {
+  if (!stopFlipping6) {
     currentIndex6 = (currentIndex6 + 1) % images1.length; // Cycle through the first set of images
   }
-  image(images6[currentIndex6], 550, 400, 100, 120); // EAR
+  image(images6[currentIndex6], 550, 500, 100, 150); // EAR
   
   delay(500); // Delay to slow down the flipping, adjust as needed
 }
