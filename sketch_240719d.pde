@@ -1,4 +1,4 @@
-//PImage bgImage; // Declare a variable to hold the background image
+PImage bgImage; // Declare a variable to hold the background image
 PImage faceImage;
 PImage[] images1; // HAIR
 PImage[] images2; // LEFT EYE
@@ -6,23 +6,29 @@ PImage[] images3; // RIGHT EYE
 PImage[] images4; // MOUTH
 PImage[] images5; // NOSE
 PImage[] images6; // EAR
+PImage[] images7; // SHIRT
+PImage[] images8; // EARRING
 int currentIndex1 = 0; // Index of the current image in the HAIR
 int currentIndex2 = 0; // Index of the current image in the LEFT EYE
 int currentIndex3 = 0; // Index of the current image in the RIGHT EYE
 int currentIndex4 = 0; // Index of the current image in the MOUTH
 int currentIndex5 = 0; // Index of the current image in the NOSE
 int currentIndex6 = 0; // Index of the current image in the EAR
+int currentIndex7 = 0; // Index of the current image in the SHIRT
+int currentIndex8 = 0; // Index of the current image in the EARRING
 boolean stopFlipping1 = false; // Boolean to check if flipping should stop for the first set
 boolean stopFlipping2 = false; // Boolean to check if flipping should stop for the second set
 boolean stopFlipping3 = false; 
 boolean stopFlipping4 = false; //MOUTH
 boolean stopFlipping5 = false; //NOSE
 boolean stopFlipping6 = false; //NOSE
+boolean stopFlipping7 = false; //SHIRT
+boolean stopFlipping8 = false; //SHIRT
 int keyPressCount = 0; // Counter to track the number of key presses
 
 void setup() {
   size(800, 850); // Double the width to fit two houses
-  //bgImage = loadImage("background.jpg");
+  bgImage = loadImage("background.jpg");
   faceImage = loadImage("Face.png");
 
   // Load HAIR
@@ -61,12 +67,23 @@ void setup() {
   images6[0] = loadImage("rightear1.png");
   images6[1] = loadImage("rightear2.png");
   images6[2] = loadImage("rightear3.png");
+  
+  // Load the SHIRT
+  images7 = new PImage[3]; // Assuming you have 3 images in the first set
+  images7[0] = loadImage("shirt1.png");
+  images7[1] = loadImage("shirt2.png");
+  images7[2] = loadImage("shirt3.png");
+  
+  images8 = new PImage[3]; // Assuming you have 3 images in the first set
+  images8[0] = loadImage("earring1.png");
+  images8[1] = loadImage("earring2.png");
+  images8[2] = loadImage("earring3.png");
  
 }
 
 void draw() {
   background(255); // Optional, you can remove this if you only want the background image
-  //image(bgImage, 0, 0, width, height);
+  image(bgImage, 0, 0, width, height);
   image(faceImage, width/2 - 180, height/2 -250, 400, 700);
 
 
@@ -99,7 +116,7 @@ void draw() {
   if (!stopFlipping3) {
     currentIndex3 = (currentIndex3 + 1) % images1.length; // Cycle through the first set of images
   }
-  image(images3[currentIndex3], 450, 380, 150, 100); // RIGHT EYE
+  image(images3[currentIndex3], 450, 340, 130, 150); // RIGHT EYE
   
   // Flip through the first set of images if not stopped
   if (!stopFlipping4) {
@@ -119,7 +136,31 @@ void draw() {
   }
   image(images6[currentIndex6], 550, 500, 100, 150); // EAR
   
-  delay(500); // Delay to slow down the flipping, adjust as needed
+  if (!stopFlipping7) {
+    currentIndex7 = (currentIndex7 + 1) % images1.length; // Cycle through the first set of images
+  }
+  
+  switch (currentIndex7) {
+  case 0:
+    image(images7[currentIndex7], 160, 570, 500, 450); // HAIR
+    break;
+  case 1:
+    image(images7[currentIndex7], 250, 670, 300, 250); // Curls
+    break;
+  case 2:
+    image(images7[currentIndex7], 260, 710, 300, 400); // Long hair
+    break; 
+  }
+  // Flip through the first set of images if not stopped
+  if (!stopFlipping8) {
+    currentIndex8 = (currentIndex8 + 1) % images1.length; // Cycle through the first set of images
+  }
+  image(images8[currentIndex8], 190, 500, 50, 100); // EARRING
+  
+  
+  //image(images7[currentIndex7], 160, 570, 500, 450); // EAR
+  
+  delay(700); // Delay to slow down the flipping, adjust as needed
 }
 
 void keyPressed() {
@@ -141,5 +182,11 @@ void keyPressed() {
   }
   else if (keyPressCount == 6) {
     stopFlipping6 = true; // Stop flipping the second set of images on the second key press
+  }
+  else if (keyPressCount == 7) {
+    stopFlipping7 = true; // Stop flipping the second set of images on the second key press
+  }
+  else if (keyPressCount == 8) {
+    stopFlipping8 = true; // Stop flipping the second set of images on the second key press
   }
 }
